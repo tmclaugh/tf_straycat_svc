@@ -54,6 +54,7 @@ resource "aws_launch_configuration" "lc" {
   image_id              = "${var.ami_id}"
   instance_type         = "${var.instance_type}"
   iam_instance_profile  = "${aws_iam_instance_profile.profile.name}"
+  key_name              = "${var.instance_key_name}"
 
   lifecycle {
     create_before_destroy = true
