@@ -23,9 +23,10 @@ resource "aws_security_group" "sg" {
 }
 
 resource "aws_launch_configuration" "lc" {
-  name_prefix = "${var.svc_name}-"
-  image_id = "${var.ami_id}"
+  name_prefix   = "${var.svc_name}-"
+  image_id      = "${var.ami_id}"
   instance_type = "${var.instance_type}"
+
   lifecycle {
     create_before_destroy = true
   }
@@ -37,18 +38,18 @@ resource "aws_launch_configuration" "lc" {
 }
 
 resource "aws_autoscaling_group" "asg" {
-  #availability_zones = "${var.aws_availability_zones}"
-  vpc_zone_identifier = ["${data.terraform_remote_state.infrastructure.vpc_private.subnet_ids_private}"]
-  name = "${var.svc_name}"
-  min_size = "${var.asg_min_size}"
-  max_size = "${var.asg_max_size}"
-  desired_capacity = "${var.asg_desired_capacity}"
-  force_delete = true
-  launch_configuration = "${aws_launch_configuration.lc.name}"
+  #availability_zones   = "${var.aws_availability_zones}"
+  vpc_zone_identifier   = ["${data.terraform_remote_state.infrastructure.vpc_private.subnet_ids_private}"]
+  name                  = "${var.svc_name}"
+  min_size              = "${var.asg_min_size}"
+  max_size              = "${var.asg_max_size}"
+  desired_capacity      = "${var.asg_desired_capacity}"
+  force_delete          = true
+  launch_configuration  = "${aws_launch_configuration.lc.name}"
 
   tag {
-    key = "terraform"
-    value = "true"
+    key                 = "terraform"
+    value               = "true"
     propagate_at_launch = true
   }
 }
