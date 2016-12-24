@@ -81,4 +81,10 @@ resource "aws_autoscaling_group" "asg" {
     value               = "true"
     propagate_at_launch = true
   }
+
+  tag {
+    key                 = "Name"
+    value               = "${var.svc_name}"
+    propagate_at_launch = true
+  }
 }
