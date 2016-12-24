@@ -22,10 +22,38 @@ resource "aws_security_group" "sg" {
   }
 }
 
+resource "aws_iam_role" "role" {
+  name = "${var.svc_name}"
+  path = "/service/"
+
+  assume_role_policy  = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_instance_profile" "profile" {
+  name  = "${var.svc_name}"
+  path  = "/service/"
+  roles = ["${aws_iam_role.role.name}"]
+}
+
 resource "aws_launch_configuration" "lc" {
-  name_prefix   = "${var.svc_name}-"
-  image_id      = "${var.ami_id}"
-  instance_type = "${var.instance_type}"
+  name_prefix           = "${var.svc_name}-"
+  image_id              = "${var.ami_id}"
+  instance_type         = "${var.instance_type}"
+  iam_instance_profile  = "${aws_iam_instance_profile.profile.name}"
 
   lifecycle {
     create_before_destroy = true

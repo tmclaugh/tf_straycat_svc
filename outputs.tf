@@ -38,6 +38,26 @@ output "autoscaling_group_vpc_zone_identifier" {
   value = "${aws_autoscaling_group.asg.vpc_zone_identifier}"
 }
 
+output "iam_role_arn" {
+  value = "${aws_iam_role.role.arn}"
+}
+
+output "iam_role_name" {
+  value = "${aws_iam_role.role.name}"
+}
+
+output "iam_instance_profile_arn" {
+  value = "${aws_iam_instance_profile.profile.arn}"
+}
+
+output "iam_instance_profile_name" {
+  value = "${aws_iam_instance_profile.profile.name}"
+}
+
+output "iam_instance_profile_roles" {
+  value = "${aws_iam_instance_profile.profile.roles}"
+}
+
 output "security_group_id" {
   value = "${aws_security_group.sg.id}"
 }
