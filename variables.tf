@@ -31,10 +31,9 @@ variable "asg_desired_capacity" {
   description = "Desired instances in ASG."
 }
 
-# FIXME: infrastructure should be providing this to us.
 variable "ami_id" {
   type = "string"
-  description = "<`2AMI ID for instances`>"
+  description = "AMI ID for instances"
   default = "ami-b73b63a0"
 }
 
