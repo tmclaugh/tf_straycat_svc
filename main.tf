@@ -5,14 +5,14 @@
 resource "aws_security_group" "sg" {
   name        = "${var.svc_name}"
   description = "${var.svc_name} hosts"
-  vpc_id      = "${data.terraform_remote_state.infrastructure.vpc_private.vpc_id}"
+  vpc_id = "${data.terraform_remote_state.aws_vpc.vpc.vpc_id}"
 
   ingress {
     from_port         = 8080
     to_port           = 8080
     protocol          = "tcp"
     security_groups   = [
-      "${data.terraform_remote_state.infrastructure.vpc_private.default_security_group_id}"
+      "${data.terraform_remote_state.aws_vpc.vpc.default_security_group_id}"
     ]
   }
 
@@ -61,14 +61,16 @@ resource "aws_launch_configuration" "lc" {
   }
 
   security_groups = [
-    "${data.terraform_remote_state.infrastructure.vpc_private.default_security_group_id}",
+    "${data.terraform_remote_state.aws_vpc.vpc.default_security_group_id}",
     "${aws_security_group.sg.id}"
   ]
 }
 
 resource "aws_autoscaling_group" "asg" {
-  #availability_zones   = "${var.aws_availability_zones}"
-  vpc_zone_identifier   = ["${data.terraform_remote_state.infrastructure.vpc_private.subnet_ids_private}"]
+  availability_zones    = ["${data.terraform_remote_state.aws_vpc.vpc.subnet_availability_zones[var.subnet_type]}"]
+  vpc_zone_identifier   = [
+    "${data.terraform_remote_state.aws_vpc.vpc.subnet_ids[var.subnet_type]}"
+  ]
   name                  = "${var.svc_name}"
   min_size              = "${var.asg_min_size}"
   max_size              = "${var.asg_max_size}"

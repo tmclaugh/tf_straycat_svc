@@ -6,6 +6,16 @@ variable "svc_name" {
   description = "Name of service being deployed"
 }
 
+variable "account_id" {
+  type = "string"
+  description = "Account ID"
+}
+
+variable "subnet_type" {
+  type = "string"
+  description = "private v. public subnet."
+}
+
 variable "asg_min_size" {
   type = "string"
   description = "Min size of ASG."
@@ -19,11 +29,6 @@ variable "asg_max_size" {
 variable "asg_desired_capacity" {
   type = "string"
   description = "Desired instances in ASG."
-}
-
-# FIXME: We should be asking infrastructure for this information
-variable "aws_availability_zones" {
-  default = ["us-east-1a", "us-east-1b", "us-east-1c"]
 }
 
 # FIXME: infrastructure should be providing this to us.
@@ -45,7 +50,10 @@ variable "instance_key_name" {
 }
 
 ## For finding data source info
-variable "domain" {}
+variable "domain" {
+  type = "string"
+  description = ""
+}
 
 variable "environment" {}
 
