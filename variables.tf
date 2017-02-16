@@ -55,7 +55,20 @@ variable "domain" {
   description = ""
 }
 
-variable "environment" {}
+variable "domain_net" {
+  type = "string"
+  description = "All hosts exists in a global DNS namespace."
+  default = "straycat-net.dhs.org"
+}
+
+# Easier to use this over calculating based on VPC range.
+#
+# FIXME: Not currently used anywhere.
+variable "nameserver" {
+  type = "string"
+  description = "Nameserver address"
+  default = "169.254.169.253"
+}
 
 variable "aws_region" {}
 

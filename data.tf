@@ -7,3 +7,11 @@ data "terraform_remote_state" "aws_vpc" {
   }
 }
 
+data "template_file" "cloud_init" {
+  template = "${file("${path.module}/cloud-init.tpl")}"
+
+  vars {
+    domain_net = "${var.domain_net}"
+  }
+}
+
