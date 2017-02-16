@@ -52,7 +52,8 @@ variable "instance_key_name" {
 ## For finding data source info
 variable "domain" {
   type = "string"
-  description = ""
+  description = "Environment's domain name; used to help finding remote state bucket"
+  default = "straycat.dhs.org"
 }
 
 variable "domain_net" {
