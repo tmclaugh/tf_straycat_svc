@@ -31,6 +31,18 @@ variable "asg_desired_capacity" {
   description = "Desired instances in ASG."
 }
 
+variable "security_group_service_ingress_external" {
+  type = "map"
+  description = "Service ingress rule; external traffic."
+  default = {}
+}
+
+variable "security_group_service_ingress_internal" {
+  type = "map"
+  description = "Service ingress rule; internal traffic."
+  default = {}
+}
+
 variable "ami_id" {
   type = "string"
   description = "AMI ID for instances"

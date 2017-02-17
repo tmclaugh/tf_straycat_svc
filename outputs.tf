@@ -66,14 +66,6 @@ output "security_group_vpc_id" {
   value = "${aws_security_group.sg.vpc_id}"
 }
 
-output "security_group_ingress" {
-  value = "${aws_security_group.sg.ingress}"
-}
-
-output "security_group_egress" {
-  value = "${aws_security_group.sg.egress}"
-}
-
 output "security_group_name" {
   value = "${aws_security_group.sg.name}"
 }
