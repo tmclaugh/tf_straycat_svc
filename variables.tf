@@ -6,9 +6,14 @@ variable "svc_name" {
   description = "Name of service being deployed"
 }
 
-variable "account_id" {
+variable "aws_account" {
   type = "string"
-  description = "Account ID"
+  description = "AWS Account"
+}
+
+variable "aws_region" {
+  type = "string"
+  description = "AWS region"
 }
 
 variable "subnet_type" {
@@ -82,6 +87,5 @@ variable "nameserver" {
   default = "169.254.169.253"
 }
 
-variable "aws_region" {}
 
 
