@@ -42,7 +42,7 @@ resource "aws_security_group_rule" "service_ingress_internal" {
 }
 
 resource "aws_iam_role" "role" {
-  name = "${var.svc_name}"
+  name = "svc-${var.svc_name}"
   path = "/service/"
 
   assume_role_policy  = <<EOF
