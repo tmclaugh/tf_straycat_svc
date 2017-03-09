@@ -16,6 +16,11 @@ variable "aws_region" {
   description = "AWS region"
 }
 
+variable "aws_s3_prefix" {
+  type = "string"
+  description = "AWS S3 bucket prefix"
+}
+
 variable "subnet_type" {
   type = "string"
   description = "private v. public subnet."
@@ -68,7 +73,7 @@ variable "instance_key_name" {
 ## For finding data source info
 variable "domain" {
   type = "string"
-  description = "Environment's domain name; used to help finding remote state bucket"
+  description = "Environment's domain name"
   default = "straycat.dhs.org"
 }
 
