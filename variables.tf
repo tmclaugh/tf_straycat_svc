@@ -19,6 +19,7 @@ variable "aws_region" {
 variable "aws_s3_prefix" {
   type = "string"
   description = "AWS S3 bucket prefix"
+  default = "straycat-dhs-org"
 }
 
 variable "subnet_type" {
