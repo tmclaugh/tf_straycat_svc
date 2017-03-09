@@ -63,7 +63,7 @@ EOF
 }
 
 resource "aws_iam_instance_profile" "profile" {
-  name  = "${var.svc_name}"
+  name  = "svc-${var.svc_name}"
   path  = "/service/"
   roles = ["${aws_iam_role.role.name}"]
 }
