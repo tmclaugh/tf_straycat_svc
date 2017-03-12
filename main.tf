@@ -73,7 +73,7 @@ resource "aws_launch_configuration" "lc" {
   image_id              = "${var.ami_id}"
   instance_type         = "${var.instance_type}"
   iam_instance_profile  = "${aws_iam_instance_profile.profile.name}"
-  key_name              = "${var.instance_key_name == "default" ? data.terraform_remote_state.aws_iam.aws_key_pair_admin_key_key_name: var.instance_key_name}"
+  key_name              = "${var.instance_key_name == "default" ? data.terraform_remote_state.aws_iam.aws_key_pair_key_name_admin_key: var.instance_key_name}"
 
   user_data = "${data.template_file.cloud_init.rendered}"
 
