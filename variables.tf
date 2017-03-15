@@ -69,7 +69,7 @@ variable "instance_type" {
 variable "instance_key_name" {
   type = "string"
   description = "SSH key for instance"
-  default = "default"
+  default = ""
 }
 
 ## For finding data source info
