@@ -2,6 +2,14 @@
 * outputs
 */
 
+output "instance_type" {
+  value = "${var.instance_type}"
+}
+
+output "image_id" {
+  value = "${var.ami_id}"
+}
+
 output "launch_config_id" {
   value = "${aws_launch_configuration.lc.id}"
 }
